@@ -16,3 +16,4 @@ D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp2.2\September2020.csproj.CoreCompileI
 D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp2.2\September2020.dll
 D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp2.2\September2020.pdb
 D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp2.2\September2020.genruntimeconfig.cache
+D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp2.2\September2020.csprojAssemblyReference.cache

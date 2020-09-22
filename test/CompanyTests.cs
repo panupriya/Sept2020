@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using September2020.helpers;
 using September2020.pages;
 using System;
 using System.Collections.Generic;
@@ -8,25 +9,11 @@ using System.Text;
 
 namespace September2020.test
 {
-    [TestFixture]
-    class CompanyTests
+    [TestFixture , Description("this fixture contains company tests")]
+    [Parallelizable]
+    class CompanyTests : CommonDriver
     {
-        //int driver;
-        IWebDriver driver;
-
-        [SetUp]
-        public void LoginToTurnup()
-        {
-            //System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)   
-            // web driver
-            driver = new ChromeDriver();
-
-            //obj init and define for loginpage
-            LoginPage loginObject = new LoginPage();
-            loginObject.LoginSteps(driver);
-
-        }
-        [Test]
+      [Test , Description("Check if the user is create company successfully")]
         public void CreateNewCompanyTests()
         {
             //obj init and define for home page
@@ -40,7 +27,7 @@ namespace September2020.test
             createCompanyObj.CreateCompany(driver);
 
         }
-        [Test]
+        [Test , Description("this test is to check user is able to edit company details ")]
         public void EditCompanyTests()
         {
             //obj init and define for home page
@@ -53,10 +40,8 @@ namespace September2020.test
             CompanyPage editCompanyObj = new CompanyPage();
             editCompanyObj.EditCompany(driver);
 
-
-
         }
-        [Test]
+        [Test , Description("this test is to check user is able to delete company details ")]
         public void DeleteCompanyTests()
         {
             //obj init and define for home page
@@ -69,12 +54,6 @@ namespace September2020.test
             deleteCompanyObj.DeleteCompany(driver);
 
         }
-        [TearDown]
-        public void TestClousure()
-        {
-            // close instances of open chrome driver
-            driver.Quit();
-
-        }
+        
     }
 }

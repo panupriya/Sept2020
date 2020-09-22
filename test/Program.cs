@@ -2,33 +2,20 @@
 using NUnit.Framework.Internal.Execution;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using September2020.helpers;
 using September2020.pages;
 using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
 namespace september2020
 {
    
-    [TestFixture]
-   class Program
+    [TestFixture , Description("this fixture contains time and material tests")]
+    [Parallelizable]
+   class Program : CommonDriver 
     {
-       
-        //int driver;
-        IWebDriver driver;
-
-        [SetUp]
-            public void LoginToTurnup()
-            {
-                //System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)   
-                // web driver
-                driver = new ChromeDriver();
-
-                //obj init and define for loginpage
-                LoginPage loginObject = new LoginPage();
-                loginObject.LoginSteps(driver);
-
-            }
-            [Test]
+          [Test , Description("Check if the user is create time successfully")]
             public void CreateNewTMTests()
             {
                 //obj init and define for home page
@@ -40,9 +27,9 @@ namespace september2020
                 //obj init and define for createTM
                 TMpage createTmObj = new TMpage();
                 createTmObj.CreateTM(driver);
-
             }
-            [Test]
+
+        [Test , Description("this test is to check user is able to edit time ")]
             public void EditTMTests()
             {
                 //obj init and define for home page
@@ -54,11 +41,9 @@ namespace september2020
                 // Test 2- check if the user is able to edit time successfully
                 TMpage editTmObj = new TMpage();
                 editTmObj.EditTM(driver);
-
-
-
             }
-            [Test]
+
+           [Test , Description("this test is to check user is able to delete time ")]
             public void DeleteTMTests()
             {
                 //obj init and define for home page
@@ -71,13 +56,7 @@ namespace september2020
                 deleteTmObj.DeleteTM(driver);
 
             }
-            [TearDown]
-            public void TestClousure()
-            {
-                // close instances of open chrome driver
-                driver.Quit();
-            }
-        
+    
     }
 }
 
