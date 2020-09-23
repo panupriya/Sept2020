@@ -12,20 +12,18 @@ namespace September2020.pages
        public void LoginSteps(IWebDriver driver)
         {
             
-
-
-            // launch browser using url
+         // launch browser using url
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
 
-            // maximize web browser
+          // maximize web browser
 
             driver.Manage().Window.Maximize();
 
-            // identify user name test box and enter user name
+          // identify user name test box and enter user name
             IWebElement username = driver.FindElement(By.Id("UserName"));
             username.SendKeys("hari");
 
-            //identify user passward text box and enter
+          //identify user passward text box and enter
             IWebElement passward = driver.FindElement(By.Id("Password"));
             passward.SendKeys("123123");
 
@@ -44,11 +42,6 @@ namespace September2020.pages
             {
                 Assert.Fail("Test failed at login step", ex.Message);
             }
-
-           
-           
-
         }
-
     }
 }

@@ -23,8 +23,8 @@ namespace September2020.helpers
             //obj init and define for loginpage
             LoginPage loginObject = new LoginPage();
             loginObject.LoginSteps(driver);
-
         }
+
         [OneTimeTearDown]
         public void TestClousure()
         {

@@ -23,30 +23,47 @@ namespace September2020.pages
             //click time and material
             IWebElement timeandmaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             timeandmaterial.Click();
-            Thread.Sleep(1000);
+            
+            wait.WaitForElement(driver, "XPath", "//*[@id='container']/p/a", 5);
 
-            //click createnew time and material
-            IWebElement createnew = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
-            createnew.Click();
-            Thread.Sleep(1000);
+            try
+            {
+                //click createnew time and material
+                IWebElement createnew = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
+                createnew.Click();
+
+                wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span", 5);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("test failed at create new button", ex.Message);
+            }
         }
         public void NavigateToCompany(IWebDriver driver)
         {
             // click administeation
             IWebElement administrationC = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
             administrationC.Click();
-            Thread.Sleep(2000);
+
+            wait.WaitForElement(driver, "XPath","/html/body/div[3]/div/div/ul/li[5]/ul/li[6]/a", 5);
 
             //click company
             IWebElement company = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[6]/a"));
             company.Click();
-            Thread.Sleep(1000);
 
-            //click createnew company
-            IWebElement createnewCompany = driver.FindElement(By.XPath(""));
-            createnewCompany.Click();
-            Thread.Sleep(1000);
+            wait.WaitForElement(driver, "XPath", "//*[@id='container']/p/a", 5);
+            try
+            {
+                //click createnew company
+                IWebElement createnewCompany = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
+                createnewCompany.Click();
 
+                wait.WaitForElement(driver, "XPath", "//*[@id='Name']", 5);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("test fails at createnew company", ex.Message);
+            }
 
         }
 

@@ -64,7 +64,5 @@ namespace September2020.helpers
                 Assert.Fail("Test faied waiting for an webelement to be visible", ex.Message);
             }
         }
-
-
     }
 }
