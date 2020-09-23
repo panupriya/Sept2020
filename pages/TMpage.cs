@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -54,13 +55,17 @@ namespace September2020.pages
 
             if (expectedcode.Text == "Sep2020")
             {
-                Console.WriteLine("Time record created successfully, test passed");
+                //using seert pass and fail on if condition
+                Assert.Pass("Time record created successfully, test passed");
+               // Console.WriteLine("Time record created successfully, test passed");
             }
             else
             {
-                Console.WriteLine("Time record created faild, test faild");
+                Assert.Fail("Time record created faild, test faild");
+                //Console.WriteLine("Time record created faild, test faild");
             }
 
+           
             Thread.Sleep(5000);
         }
         public void EditTM(IWebDriver driver)
@@ -119,14 +124,9 @@ namespace September2020.pages
             //edited last test element selection
             IWebElement editedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (editedcode.Text == "Sep2020 updated")
-            {
-                Console.WriteLine("Edit button working successfully, test passed");
-            }
-            else
-            {
-                Console.WriteLine("Edit faild, test faild");
-            }
+            //-- another method assertion
+            Assert.That(editedcode.Text, Is.EqualTo("Sep2020 updated")); 
+           
         }
         public void DeleteTM(IWebDriver driver)
         {

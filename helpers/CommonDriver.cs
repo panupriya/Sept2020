@@ -13,7 +13,7 @@ namespace September2020.helpers
         //int driver;
         public static IWebDriver driver;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void LoginToTurnup()
         {
             //System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)   
@@ -25,7 +25,7 @@ namespace September2020.helpers
             loginObject.LoginSteps(driver);
 
         }
-        [TearDown]
+        [OneTimeTearDown]
         public void TestClousure()
         {
             // close instances of open chrome driver

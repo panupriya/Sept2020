@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using September2020.helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,10 @@ namespace September2020.pages
             // click administeation
             IWebElement administration = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
             administration.Click();
-            Thread.Sleep(2000);
+
+            //wait for the next xpath to load
+            wait.WaitForElement(driver, "XPath", "/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a",5);
+            
 
             //click time and material
             IWebElement timeandmaterial = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
