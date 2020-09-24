@@ -12,6 +12,12 @@ namespace September2020.pages
     {
        public void CreateTM(IWebDriver driver)
         {
+            //click createnew time and material
+            IWebElement createnew = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
+            createnew.Click();
+
+            wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span", 5);
+
             //click typecode dropdown list
             IWebElement time = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span"));
             time.Click();
@@ -48,7 +54,7 @@ namespace September2020.pages
             IWebElement savebutton = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
             savebutton.Click();
             
-            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 5);
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 400);
 
             try
             {
@@ -60,7 +66,7 @@ namespace September2020.pages
             {
                 Console.WriteLine("last page cannot be loaded", ex.Message);
             }
-
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
             //last test element selection
             IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
@@ -75,58 +81,62 @@ namespace September2020.pages
                 Assert.Fail("Time record created faild, test faild");
                 
             }
-
-            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 5);
+            
+           // wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 5);
             
         }
         public void EditTM(IWebDriver driver)
         {
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 20);
+            //goto laste page
+            IWebElement lastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
+            lastpage.Click();
+
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 10);
+
             //data to edit button
             IWebElement editcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             editcode.Click();
             
             wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]", 20);
 
-            try
-            {
                 //edit button
                 IWebElement editbutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
                 editbutton.Click();
-                wait.WaitForElement(driver, "Id", "Code", 10);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("edit function failed", ex.Message);
-            }
-                
+                wait.WaitForElement(driver, "Id", "Code", 20);
+     
             //update code
             IWebElement editCode = driver.FindElement(By.Id("Code"));
             editCode.Clear();
             editCode.SendKeys("Sep2020 updated");
+            wait.WaitForElementVisibility(driver, "id", "Description", 10);
 
             //update discription
             IWebElement editDiscription = driver.FindElement(By.Id("Description"));
             editDiscription.Clear();
             editDiscription.SendKeys("Test_time updated");
+            
+            /*wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]", 20);
 
             //price is overriding so call the first input then call price input
             IWebElement editPrice = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
             editPrice.Click();
 
-
-
+            wait.WaitForElementVisibility(driver, "id", "price", 20);
             // update price
             IWebElement editPricePerUnit = driver.FindElement(By.Id("Price"));
             editPricePerUnit.Clear();
 
+            wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]", 100);
 
             IWebElement editPrice1 = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
             editPrice1.Click();
 
+            wait.WaitForElementVisibility(driver, "id", "price", 20);
             IWebElement editPricePerUnit1 = driver.FindElement(By.Id("Price"));
-            editPricePerUnit1.SendKeys("10000");
+            editPricePerUnit1.SendKeys("10000");*/
 
-            wait.WaitForElementVisibility(driver, "XPath", "//*[@id='SaveButton']", 5);
+            wait.WaitForElementVisibility(driver, "XPath", "//*[@id='SaveButton']", 60);
 
             // select file
 
@@ -135,13 +145,15 @@ namespace September2020.pages
             // save edited data
             IWebElement editSavebutton = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
             editSavebutton.Click();
-            
-            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 5);
+            //wait.WaitForElementVisibility(driver, "XPath", "//*[@id='SaveButton']", 60);
+
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 500);
 
             //goto last page
             IWebElement editLastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
             editLastpage.Click();
 
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 100);
             //edited last test element selection
             IWebElement editedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
@@ -151,7 +163,12 @@ namespace September2020.pages
         }
         public void DeleteTM(IWebDriver driver)
         {
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 20);
+            //goto laste page
+            IWebElement lastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
+            lastpage.Click();
 
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 20);
             // data to delete  
             IWebElement deleteDataCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             deleteDataCode.Click();

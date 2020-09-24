@@ -26,18 +26,7 @@ namespace September2020.pages
             
             wait.WaitForElement(driver, "XPath", "//*[@id='container']/p/a", 5);
 
-            try
-            {
-                //click createnew time and material
-                IWebElement createnew = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
-                createnew.Click();
-
-                wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span", 5);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("test failed at create new button", ex.Message);
-            }
+              
         }
         public void NavigateToCompany(IWebDriver driver)
         {

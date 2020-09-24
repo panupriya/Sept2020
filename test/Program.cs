@@ -15,7 +15,7 @@ namespace september2020
     [Parallelizable]
    class Program : CommonDriver 
     {
-          [Test , Description("Check if the user is create time successfully")]
+        [Test , Description("Check if the user is create time successfully")]
             public void CreateNewTMTests()
             {
                 //obj init and define for home page
