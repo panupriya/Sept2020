@@ -41,18 +41,7 @@ namespace September2020.pages
             company.Click();
 
             wait.WaitForElement(driver, "XPath", "//*[@id='container']/p/a", 5);
-            try
-            {
-                //click createnew company
-                IWebElement createnewCompany = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
-                createnewCompany.Click();
-
-                wait.WaitForElement(driver, "XPath", "//*[@id='Name']", 5);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine("test fails at createnew company", ex.Message);
-            }
+           
 
         }
 
