@@ -82,7 +82,7 @@ namespace September2020.pages
 
             }
 
-            
+
         }
 
         public void EditTM(IWebDriver driver)
@@ -98,14 +98,14 @@ namespace September2020.pages
             //data to edit button
             IWebElement editcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             editcode.Click();
-            
+
             wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]", 20);
 
-                //edit button
-                IWebElement editbutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
-                editbutton.Click();
-                wait.WaitForElement(driver, "Id", "Code", 20);
-     
+            //edit button
+            IWebElement editbutton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+            editbutton.Click();
+            wait.WaitForElement(driver, "Id", "Code", 20);
+
             //update code
             IWebElement editCode = driver.FindElement(By.Id("Code"));
             editCode.Clear();
@@ -116,7 +116,7 @@ namespace September2020.pages
             IWebElement editDiscription = driver.FindElement(By.Id("Description"));
             editDiscription.Clear();
             editDiscription.SendKeys("Test_time updated");
-            
+
             wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]", 20);
 
             //price is overriding so call the first input then call price input
@@ -159,8 +159,8 @@ namespace September2020.pages
             IWebElement editedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
             //-- another method assertion
-            Assert.That(editedcode.Text, Is.EqualTo("Sep2020 updated")); 
-           
+            Assert.That(editedcode.Text, Is.EqualTo("Sep2020 updated"));
+
         }
         public void DeleteTM(IWebDriver driver)
         {
@@ -173,14 +173,14 @@ namespace September2020.pages
             // data to delete  
             IWebElement deleteDataCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             deleteDataCode.Click();
-            
+
             wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]", 10);
 
             //delete data
             IWebElement delete = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
             delete.Click();
             Thread.Sleep(2000);
-           
+
 
             //driver.SwitchTo().Alert().Accept();
 
@@ -189,6 +189,19 @@ namespace September2020.pages
 
             // Accepting alert		
             alert.Accept();
+            // validating deleted data
+            try
+            {
+                IWebElement deleteText = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+                Assert.That(deleteText.Text != "Sep 2020");
+                Console.WriteLine("tm details deleted");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("delete method failed");
+                Assert.Fail("deleteText failed", ex.Message);
+
+            }
         }
     }
 }

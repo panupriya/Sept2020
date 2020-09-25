@@ -29,14 +29,15 @@ namespace September2020.pages
             IWebElement name = driver.FindElement(By.XPath("//*[@id='Name']"));
             name.SendKeys("ABC LTD");
             
-            wait.WaitForElementVisibility(driver, "XPath", "//*[@id='EditContactButton']", 5);
+            wait.WaitForElement(driver, "XPath", "//*[@id='EditContactButton']", 5);
 
             //EditCompany contact
             IWebElement editbutton = driver.FindElement(By.XPath("//*[@id='EditContactButton']"));
             editbutton.Click();
 
-             wait.WaitForElementVisibility(driver, "XPath", "//*[@id='contactDetailWindow']/iframe", 20);
+             wait.WaitForElement(driver, "XPath", "//*[@id='contactDetailWindow']/iframe", 20);
 
+            //switch to contact details window
             IWebElement iframe = driver.FindElement(By.XPath("//*[@id='contactDetailWindow']/iframe"));
 
             driver.SwitchTo().Frame(iframe);
@@ -87,7 +88,7 @@ namespace September2020.pages
 
             IWebElement country = driver.FindElement(By.Id("Country"));
             country.SendKeys("Australia");
-            wait.WaitForElementVisibility(driver, "Xpath", "//*[@id='submitButton']", 5);
+            wait.WaitForElement(driver, "Xpath", "//*[@id='submitButton']", 5);
 
             IWebElement saveContacts = driver.FindElement(By.XPath("//*[@id='submitButton']"));
             saveContacts.Click();
@@ -113,7 +114,7 @@ namespace September2020.pages
             Thread.Sleep(3000);
 
             // create new group
-            wait.WaitForElementVisibility(driver, "Xpath", "//*[@id='CreateGroupButton']", 5);
+            wait.WaitForElement(driver, "Xpath", "//*[@id='CreateGroupButton']", 50);
 
             IWebElement createnewButton = driver.FindElement(By.XPath("//*[@id='CreateGroupButton']"));
             createnewButton.Click();
@@ -123,16 +124,60 @@ namespace September2020.pages
             driver.SwitchTo().Frame(iframeAddgroup);
             wait.WaitForElementVisibility(driver, "Xpath", "//*[@id='Name']", 5);
 
-            /*// input group name
+            // input group name
             IWebElement groupName = driver.FindElement(By.XPath("//*[@id='Name']"));
             groupName.SendKeys("Aussie group");
-            wait.WaitForElementVisibility(driver, "Xpath", "//*[@id='SaveButton']", 5);
+            wait.WaitForElement(driver, "Xpath", "//*[@id='SaveButton']", 5);
 
-            IWebElement saveGroup = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
+            // IWebElement saveGroup = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
+            IWebElement saveGroup = driver.FindElement(By.XPath("//*[@id='GroupEditForm']/div/div[2]/div/input[1]"));
             saveGroup.Click();
             Thread.Sleep(3000);
 
-            driver.SwitchTo().DefaultContent();*/
+            driver.SwitchTo().DefaultContent();
+            Thread.Sleep(3000);
+
+            //goto groups last page
+            IWebElement groupLastPage = driver.FindElement(By.XPath("/html/body/div[4]/form/div/div[5]/div/div/div[4]/a[4]/span"));//*[@id=\"groupGrid\"]/div[4]/a[4]/span")
+            groupLastPage.Click();
+            Thread.Sleep(2000);
+
+            // validate if the new group has been created successfully
+            wait.WaitForElement(driver, "Xpath", "//*[@id='groupGrid']/div[2]/table/tbody/tr[last()]/td[2]", 5);
+            IWebElement lastpageGroupDisplay = driver.FindElement(By.XPath("//*[@id='groupGrid']/div[2]/table/tbody/tr[last()]/td[2]"));
+            if (lastpageGroupDisplay.Text == "Aussie group")
+            {
+                Assert.Pass("group creates Successfully");
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Assert.Fail("createnewgroup created test failed");
+            }
+
+            //save company
+            IWebElement saveCompanynew = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
+            saveCompanynew.Click();
+            Thread.Sleep(20000);
+
+            try
+            {
+                //goto last page
+                wait.WaitForElement(driver, "Xpath", "//*[@id=''companiesGrid']/div[4]/a[4]/span", 400);
+                IWebElement saveCompanyEndpage = driver.FindElement(By.XPath("//*[@id=''companiesGrid']/div[4]/a[4]/span"));
+                saveCompanyEndpage.Click();
+
+            }
+            catch
+            {
+                Console.WriteLine("goto last page to last page successfull");
+            }
+
+            // validating if data stored successfully by checking last page last element
+            wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
+            IWebElement companyLastpageLastelement = driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            Assert.That(companyLastpageLastelement.Text, Is.EqualTo("ABCLTD"));
+
 
         }
         public void EditCompany(IWebDriver driver)
