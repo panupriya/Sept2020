@@ -97,7 +97,7 @@ namespace September2020.pages
             driver.SwitchTo().DefaultContent();
             Thread.Sleep(3000);
              
-            // check if contact created successfully
+           /* // check if contact created successfully
             IWebElement contactBox = driver.FindElement(By.XPath("//*[@id='ContactDisplay']"));
             IWebElement billingContactBox = driver.FindElement(By.XPath("//*[@id='BillingContactDisplay']"));
            
@@ -138,7 +138,7 @@ namespace September2020.pages
             Thread.Sleep(3000);
 
             //goto groups last page
-            IWebElement groupLastPage = driver.FindElement(By.XPath("/html/body/div[4]/form/div/div[5]/div/div/div[4]/a[4]/span"));//*[@id=\"groupGrid\"]/div[4]/a[4]/span")
+            IWebElement groupLastPage = driver.FindElement(By.XPath("/html/body/div[4]/form/div/div[5]/div/div/div[4]/a[4]"));//*[@id=\"groupGrid\"]/div[4]/a[4]/span")
             groupLastPage.Click();
             Thread.Sleep(2000);
 
@@ -153,18 +153,18 @@ namespace September2020.pages
             else
             {
                 Assert.Fail("createnewgroup created test failed");
-            }
+            }*/
 
             //save company
             IWebElement saveCompanynew = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
             saveCompanynew.Click();
-            Thread.Sleep(20000);
+            Thread.Sleep(5000);
 
             try
             {
                 //goto last page
-                wait.WaitForElement(driver, "Xpath", "//*[@id=''companiesGrid']/div[4]/a[4]/span", 400);
-                IWebElement saveCompanyEndpage = driver.FindElement(By.XPath("//*[@id=''companiesGrid']/div[4]/a[4]/span"));
+                wait.WaitForElement(driver, "Xpath", "//*[@id=''companiesGrid']/div[4]/a[4]", 400);
+                IWebElement saveCompanyEndpage = driver.FindElement(By.XPath("//*[@id=''companiesGrid']/div[4]/a[4]"));
                 saveCompanyEndpage.Click();
 
             }
@@ -172,11 +172,11 @@ namespace September2020.pages
             {
                 Console.WriteLine("goto last page to last page successfull");
             }
-
+           
             // validating if data stored successfully by checking last page last element
             wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
             IWebElement companyLastpageLastelement = driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            Assert.That(companyLastpageLastelement.Text, Is.EqualTo("ABCLTD"));
+            Assert.That(companyLastpageLastelement.Text, Is.EqualTo("ABC LTD"));
 
 
         }
@@ -186,7 +186,39 @@ namespace September2020.pages
         }
         public void DeleteCompany(IWebDriver driver)
         {
+            //go to last company page
+            wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[4]/a[4]", 400);
+            driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[4]/a[4]")).Click();
 
+            // select last element to delete
+            wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
+            driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]")).Click();
+
+            // click delete button
+            wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[9]/td[3]/a[2]", 400);
+            driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[9]/td[3]/a[2]")).Click();
+            
+
+            //driver.SwitchTo().Alert().Accept();
+            IAlert alert = driver.SwitchTo().Alert();
+            Thread.Sleep(1000);
+
+            // Accepting alert		
+            alert.Accept();
+
+            // validating deleted data
+            try
+            {
+                IWebElement deleteCompanyText = driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+                Assert.That(deleteCompanyText.Text != "ABC LTD");
+                Console.WriteLine("company details deleted");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("delete method failed");
+                Assert.Fail("deleteText failed", ex.Message);
+
+            }
         }
     }
 }

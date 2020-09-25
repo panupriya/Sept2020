@@ -176,7 +176,7 @@ namespace September2020.pages
 
             wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]", 10);
 
-            //delete data
+            //delete button click
             IWebElement delete = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[2]"));
             delete.Click();
             Thread.Sleep(2000);
@@ -185,7 +185,7 @@ namespace September2020.pages
             //driver.SwitchTo().Alert().Accept();
 
             IAlert alert = driver.SwitchTo().Alert();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             // Accepting alert		
             alert.Accept();
