@@ -197,17 +197,25 @@ namespace September2020.pages
         {
             driver.Navigate().Refresh();
             Thread.Sleep(1000);
-
+            //wait.WaitForElement(driver, "XPath", "//*[@id=''companiesGrid']/div[4]/a[4]/span", 500);
+           
             //go to last page
-            wait.WaitForElement(driver, "XPath", "//*[@id=''companiesGrid']/div[4]/a[4]", 500);
-         IWebElement editCompanyEndpage = driver.FindElement(By.XPath("//*[@id=''companiesGrid']/div[4]/a[4]"));
-         editCompanyEndpage.Click();
-            Thread.Sleep(10000);
-
+            try
+            {
+                IWebElement editCompanyEndpage = driver.FindElement(By.XPath("//*[@id=''companiesGrid']/div[4]/a[4]/span"));
+                editCompanyEndpage.Click();
+                
+                driver.Navigate().Refresh();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("go to last page failed", ex.Message);
+            }
+            Thread.Sleep(500);
             //select last page last element
             try
             {
-                //wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
+               // wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]", 4000);
                 IWebElement editLastpageLastelement = driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
                 editLastpageLastelement.Click();
             }
@@ -219,8 +227,8 @@ namespace September2020.pages
             Thread.Sleep(5000);
             try
             {
-                wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[8]/td[3]/a[1]", 400);
-                driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[8]/td[3]/a[1]")).Click();
+               //wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[1]", 400);
+                driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[1]")).Click();
             }
             catch (Exception ex)
             {
@@ -294,7 +302,7 @@ namespace September2020.pages
             driver.FindElement(By.XPath("//*[@id='CreateGroupButton']")).Click();
 
 
-            //wait.WaitForElement(driver, "Xpath", "//*[@id='groupDetailWindow_wnd_title']/iframe", 5);
+            //wait.WaitForElement(driver, "Xpath", "//*[@id='groupDetailWindowWindow']/iframe", 5);
             Thread.Sleep(10000);
 
             // switch to iframe
@@ -370,7 +378,7 @@ namespace September2020.pages
             // validating if edited data stored successfully by checking last page last element
             wait.WaitForElement(driver, "Xpath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
             IWebElement editedcompanyLastpageLastelement = driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            Assert.That(editedcompanyLastpageLastelement.Text, Is.EqualTo("ABC LTD new"));
+            Assert.That(editedcompanyLastpageLastelement.Text, Is.EqualTo("ABC LTD NEW"));
 
 
         }
@@ -378,12 +386,18 @@ namespace September2020.pages
         {
                 driver.Navigate().Refresh();
                 Thread.Sleep(2000);
-
-
+            wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[4]/a[4]", 4000);
+            try
+            {
                 //go to last company page
-                wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[4]/a[4]", 4000);
+
                 driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[4]/a[4]")).Click();
                 driver.Navigate().Refresh();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("canonot find last page", ex.Message);
+            }
                 try
                 {
                     // select last element to delete
@@ -395,14 +409,14 @@ namespace September2020.pages
                 {
                     Console.WriteLine("cannot select the last element");
                 }
-
+   
                 // click delete button
-                wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[9]/td[3]/a[2]", 4000);
-                driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[9]/td[3]/a[2]")).Click();
+                wait.WaitForElement(driver, "XPath", "//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[2]", 4000);
+                driver.FindElement(By.XPath("//*[@id='companiesGrid']/div[3]/table/tbody/tr[last()]/td[3]/a[2]")).Click();
+            
 
-
-                //driver.SwitchTo().Alert().Accept();
-                IAlert alert = driver.SwitchTo().Alert();
+            //driver.SwitchTo().Alert().Accept();
+            IAlert alert = driver.SwitchTo().Alert();
                 Thread.Sleep(1000);
 
                 // Accepting alert		
