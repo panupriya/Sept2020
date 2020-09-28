@@ -321,7 +321,7 @@ namespace September2020.pages
 
 
 
-            // edit group name
+            // edit create new group name
             wait.WaitForElement(driver, "Xpath", "//*[@id='Name']", 50);
             driver.FindElement(By.XPath("//*[@id='Name']")).Clear();
             driver.FindElement(By.XPath("//*[@id='Name']")).SendKeys("Aussie group new");
@@ -422,6 +422,8 @@ namespace September2020.pages
                 // Accepting alert		
                 alert.Accept();
                 Thread.Sleep(1000);
+            /* to cancel alert use
+            alert.Dismiss();*/
 
                 // validating deleted data
                 try
