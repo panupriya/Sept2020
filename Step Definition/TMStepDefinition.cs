@@ -35,8 +35,6 @@ namespace September2020.Step_Definition
             driver.Dispose();
         }
 
-
-
         /*[Given(@"I navigate to the Hourse portal")]
         public void GivenINavigateToTheHoursePortal()
         {
@@ -47,7 +45,6 @@ namespace September2020.Step_Definition
             loginObject.LoginSteps(driver);
         }*/
 
-
         
         [Given(@"I navigate to the TM")]
         public void GivenINavigateToTheTM()
@@ -56,12 +53,13 @@ namespace September2020.Step_Definition
             homepage.NavigateToTM(driver);
             Thread.Sleep(1000);
         }
+        [Given(@"I navigate to create new page")]
+        public void GivenINavigateToCreateNewPage()
+        {
+            var TMPage = new TMpage();
+            TMPage.CreateTM(driver);
 
-
-
-
-
-
+        }
 
 
 

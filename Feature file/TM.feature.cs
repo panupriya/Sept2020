@@ -105,6 +105,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("I navigate to the TM", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 8
+ testRunner.Given("I navigate to create new page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
