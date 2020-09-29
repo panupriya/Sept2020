@@ -61,6 +61,14 @@
             "Selenium.WebDriver": {
               "target": "Package",
               "version": "[3.141.0, )"
+            },
+            "SpecFlow": {
+              "target": "Package",
+              "version": "[3.4.8, )"
+            },
+            "SpecFlow.NUnit": {
+              "target": "Package",
+              "version": "[3.4.8, )"
             }
           },
           "imports": [

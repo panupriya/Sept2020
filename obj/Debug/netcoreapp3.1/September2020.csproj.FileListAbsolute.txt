@@ -1,4 +1,5 @@
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\testhost.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\TechTalk.SpecFlow.NUnit.SpecFlowPlugin.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\testhost.exe
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\NUnit3.TestAdapter.pdb
@@ -11,7 +12,11 @@ D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\September2020.runtimeconfig.json
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\September2020.runtimeconfig.dev.json
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\September2020.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\September2020.pdb
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\BoDi.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Cucumber.Messages.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\SeleniumExtras.WaitHelpers.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Gherkin.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Google.Protobuf.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Microsoft.DotNet.InternalAbstractions.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Microsoft.TestPlatform.CoreUtilities.dll
@@ -26,7 +31,12 @@ D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\nunit.framework.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\WebDriver.Support.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\WebDriver.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\TechTalk.SpecFlow.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\System.Security.Permissions.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\System.Xml.XPath.XmlDocument.dll
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\Utf8Json.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\cs\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\de\Microsoft.TestPlatform.CoreUtilities.resources.dll
@@ -92,7 +102,7 @@ D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.VisualStudio.Te
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp3.1\September2020.csprojAssemblyReference.cache
+D:\sep2020\ConsoleApp1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp3.1\September2020.AssemblyInfoInputs.cache
 D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp3.1\September2020.AssemblyInfo.cs
 D:\sep2020\ConsoleApp1\obj\Debug\netcoreapp3.1\September2020.csproj.CoreCompileInputs.cache
