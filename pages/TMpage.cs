@@ -2,8 +2,6 @@
 using OpenQA.Selenium;
 using September2020.helpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace September2020.pages
@@ -55,6 +53,13 @@ namespace September2020.pages
             savebutton.Click();
 
             //wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 5000);
+           
+
+
+        }
+
+        internal bool IsRecordCreated(IWebDriver driver, string code)
+        {
             Thread.Sleep(5000);
             try
             {
@@ -70,7 +75,84 @@ namespace September2020.pages
             //last test element selection
             IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
 
-            if (expectedcode.Text == "Sep2020")
+            if (expectedcode.Text == code)
+            {
+                //using Aseert pass and fail on if condition
+                return true;
+
+            }
+            else
+            {
+                return false;
+
+            }
+        }
+
+        internal void CreateTMWithValues(IWebDriver driver, string codeName, string desc)
+        {
+            //click createnew time and material
+            IWebElement createnew = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
+            createnew.Click();
+
+            wait.WaitForElement(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span", 5);
+
+            //click typecode dropdown list
+            IWebElement time = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span"));
+            time.Click();
+
+            wait.WaitForElement(driver, "XPath", "//*[@id='TypeCode_listbox']/li[2]", 5);
+
+            // select time
+            IWebElement typecode = driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[2]"));
+            typecode.Click();
+
+            wait.WaitForElement(driver, "Id", "Code", 5);
+
+            //input code
+            IWebElement code = driver.FindElement(By.Id("Code"));
+
+            // Get from feature file
+            code.SendKeys(codeName);
+
+
+            //input discription
+            IWebElement discription = driver.FindElement(By.Id("Description"));
+
+            // Get from feature file
+            discription.SendKeys(desc);
+
+            //price is overriding so call the first input then call price input
+            IWebElement price = driver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
+            price.Click();
+
+            IWebElement pricePerUnit = driver.FindElement(By.Id("Price"));
+            pricePerUnit.SendKeys("5000");
+
+            wait.WaitForElementVisibility(driver, "XPath", "//*[@id='SaveButton']", 400);
+
+            // select file
+
+            // save data
+            IWebElement savebutton = driver.FindElement(By.XPath("//*[@id='SaveButton']"));
+            savebutton.Click();
+
+            //wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 5000);
+            Thread.Sleep(5000);
+            try
+            {
+                //goto last page
+                IWebElement lastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
+                lastpage.Click();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("last page cannot be loaded", ex.Message);
+            }
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
+            //last test element selection
+            IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+
+            if (expectedcode.Text == codeName)
             {
                 //using Aseert pass and fail on if condition
                 Assert.Pass("Time record created successfully, test passed");
@@ -81,7 +163,6 @@ namespace September2020.pages
                 Assert.Fail("Time record created faild, test faild");
 
             }
-
 
         }
 
