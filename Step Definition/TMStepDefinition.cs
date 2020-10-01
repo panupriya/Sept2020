@@ -1,15 +1,10 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using September2020.helpers;
 using September2020.pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace September2020.Step_Definition
 {
@@ -17,12 +12,28 @@ namespace September2020.Step_Definition
     public sealed class TMStepDefinition
     {
         IWebDriver driver;
+        private Context _context;
+
+        public TMStepDefinition()
+        {
+            _context = new Context();
+        }
 
         [BeforeScenario]
         public void LoginToTurnup()
         {
             //System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)   
             // web driver
+
+            // option : NoCookies , Nocache. 
+
+            // If you search of a mouse of Amazon. Dell. 30 seconds. 15 seconds. 
+
+            // Chrome that sohuld replicate a fresh env. 
+
+
+ 
+
             driver = new ChromeDriver();
 
             //obj init and define for loginpage
@@ -64,39 +75,49 @@ namespace September2020.Step_Definition
 
         }
 
-        [When(@"I create entry using code : '(.*)' and desc: '(.*)'")]
-        public void WhenICreateEntryUsingCodeAndDesc(string code, string desc)
+
+        [When(@"I create entry using code code: '(.*)' and desc: '(.*)'")]
+        public void WhenICreateEntryUsingCodeCodeAndDesc(string code, string desc)
         {
             var TMPage = new TMpage();
-            TMPage.CreateTMWithValues(driver, code, desc);
+            var randomCode = TMPage.CreateRandomCode();
+            // share it with THEN Step below
+            _context.Code = randomCode;
+            _context.Desc = randomCode + "desc";
+
+
+            TMPage.CreateTMWithValues(driver, _context.Code, _context.Desc);
         }
 
-        [Then(@"I am able to verify entry with code : '(.*)'")]
-        public void ThenIAmAbleToVerifyEntryWithCode(string code)
+
+        [Then(@"I am able to verify with code: '(.*)'")]
+        public void ThenIAmAbleToVerifyWithCode(string code)
         {
             var TMPage = new TMpage();
-            var result = TMPage.IsRecordCreated(driver,code);
-
-            Assert.IsTrue(result, "NO TM Record created for code : " + code);
+            
+            var result = TMPage.IsRecordCreated(driver, _context.Code);
+            Assert.IsTrue(result, "NO TM Record created for code : " +  _context.Code);
         }
 
 
-        [When(@"I create entries using values from table :")]
-        public void WhenICreateEntriesUsingValuesFromTable(Table table)
+      
+        [When(@"I created entries using values from table :")]
+        public void WhenICreatedEntriesUsingValuesFromTable(Table table)
         {
-
+            var code = string.Empty;
+            var desc = string.Empty;
             var data = table;
             var TMPage = new TMpage();
-            var x = data.Rows[0][0]; // code
-            //data.Rows[0].items[1] // desc
 
-            //data.Rows;
-            //for (var i = 0; i < data.Rows.Count; i++)
-            //{
-            //    code = data.Rows[0].Values
-            //    TMPage.CreateTMWithValues(driver, code, desc);
-            //}
+            for (var i = 0; i < data.Rows.Count; i++)
+            {
+                code = data.Rows[i]["code"];
+                desc = data.Rows[i]["desc"];
+                TMPage.CreateTMWithValues(driver, code, desc);
+            }
+
         }
+
 
     }
 }

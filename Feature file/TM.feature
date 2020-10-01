@@ -5,20 +5,19 @@ Background: Navigation to TM Page
 
 @mytag
 Scenario: Verify the TM is created
+     Given I navigate to create new page
 
 
-	Given I navigate to create new page
-
-Scenario Outline: Verify multiple TM creation
-When I create entry using code : '<code>' and desc: '<desc>'
-Then I am able to verify entry with code : '<code>'
+Scenario Outline: Varify  multiple TM creation
+When I create entry using code code: '<code>' and desc: '<desc>'
+Then I am able to verify with code: '<code>'
 Examples: 
-| code       | desc      |
-| September1 | SeptDesc1 |
-| September2 | SeptDesc2 |
+| code    |  desc      |
+| Sep2021 |  TestTime10|
+| Sep2022 |  TestTime11|
 
-Scenario: Verify usage of Data Tables
-When I create entries using values from table :
-| code       | desc      |
-| September3 | Sept3Desc |
-| September4 | Sept4Desc |
+Scenario: Varify usage of data table
+When I created entries using values from table :
+| code    | desc       |
+| Sep2023 | TestTime12 |
+| Sep2024 | TestTime13 |

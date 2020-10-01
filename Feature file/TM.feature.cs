@@ -114,25 +114,25 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 10
- testRunner.Given("I navigate to create new page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+     testRunner.Given("I navigate to create new page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify multiple TM creation")]
-        [NUnit.Framework.TestCaseAttribute("September1", "SeptDesc1", null)]
-        [NUnit.Framework.TestCaseAttribute("September2", "SeptDesc2", null)]
-        public virtual void VerifyMultipleTMCreation(string code, string desc, string[] exampleTags)
+        [NUnit.Framework.DescriptionAttribute("Varify  multiple TM creation")]
+        [NUnit.Framework.TestCaseAttribute("Sep2021", "TestTime10", null)]
+        [NUnit.Framework.TestCaseAttribute("Sep2022", "TestTime11", null)]
+        public virtual void VarifyMultipleTMCreation(string code, string desc, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("code", code);
             argumentsOfScenario.Add("desc", desc);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify multiple TM creation", null, tagsOfScenario, argumentsOfScenario);
-#line 12
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Varify  multiple TM creation", null, tagsOfScenario, argumentsOfScenario);
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -155,24 +155,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 3
 this.FeatureBackground();
 #line hidden
-#line 13
-testRunner.When(string.Format("I create entry using code : \'{0}\' and desc: \'{1}\'", code, desc), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
+testRunner.When(string.Format("I create entry using code code: \'{0}\' and desc: \'{1}\'", code, desc), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 14
-testRunner.Then(string.Format("I am able to verify entry with code : \'{0}\'", code), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 13
+testRunner.Then(string.Format("I am able to verify with code: \'{0}\'", code), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify usage of Data Tables")]
-        public virtual void VerifyUsageOfDataTables()
+        [NUnit.Framework.DescriptionAttribute("Varify usage of data table")]
+        public virtual void VarifyUsageOfDataTable()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify usage of Data Tables", null, tagsOfScenario, argumentsOfScenario);
-#line 20
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Varify usage of data table", null, tagsOfScenario, argumentsOfScenario);
+#line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -199,13 +199,13 @@ this.FeatureBackground();
                             "code",
                             "desc"});
                 table1.AddRow(new string[] {
-                            "September3",
-                            "Sept3Desc"});
+                            "Sep2023",
+                            "TestTime12"});
                 table1.AddRow(new string[] {
-                            "September4",
-                            "Sept4Desc"});
-#line 21
-testRunner.When("I create entries using values from table :", ((string)(null)), table1, "When ");
+                            "Sep2024",
+                            "TestTime13"});
+#line 20
+testRunner.When("I created entries using values from table :", ((string)(null)), table1, "When ");
 #line hidden
             }
             this.ScenarioCleanup();

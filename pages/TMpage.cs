@@ -2,12 +2,24 @@
 using OpenQA.Selenium;
 using September2020.helpers;
 using System;
+using System.Net.WebSockets;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 
 namespace September2020.pages
 {
     class TMpage
     {
+        /// <summary>
+        /// This will return random code Example: code123
+        /// </summary>
+        /// <returns></returns>
+        public string CreateRandomCode()
+        {
+            var r = new Random();
+            return "code" + r.Next(1, 999);
+        }
+
         public void CreateTM(IWebDriver driver)
         {
             //click createnew time and material
@@ -53,13 +65,6 @@ namespace September2020.pages
             savebutton.Click();
 
             //wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 5000);
-           
-
-
-        }
-
-        internal bool IsRecordCreated(IWebDriver driver, string code)
-        {
             Thread.Sleep(5000);
             try
             {
@@ -74,12 +79,43 @@ namespace September2020.pages
             wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
             //last test element selection
             IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-
-            if (expectedcode.Text == code)
+            if (expectedcode.Text == "Sep2020")
             {
                 //using Aseert pass and fail on if condition
-                return true;
+                Assert.Pass("Time page created succesfully");
 
+            }
+            else
+            {
+                Assert.Fail("time page created failed");
+
+            }
+
+
+        }
+        
+
+        //verify multiple TM creation
+        internal bool IsRecordCreated(IWebDriver driver, string code)
+        {
+            Thread.Sleep(5000);
+            try
+            {
+                //goto last page
+                IWebElement lastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
+                lastpage.Click();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("last page cannot be loaded", ex.Message);
+            }
+            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
+            
+            //last test element selection
+            IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            if (expectedcode.Text == code)
+            {
+                return true;
             }
             else
             {
@@ -88,8 +124,10 @@ namespace September2020.pages
             }
         }
 
+        //Creating multiple TM
         internal void CreateTMWithValues(IWebDriver driver, string codeName, string desc)
         {
+
             //click createnew time and material
             IWebElement createnew = driver.FindElement(By.XPath("//*[@id='container']/p/a"));
             createnew.Click();
@@ -110,15 +148,12 @@ namespace September2020.pages
 
             //input code
             IWebElement code = driver.FindElement(By.Id("Code"));
-
-            // Get from feature file
+            // code from feature file
             code.SendKeys(codeName);
-
 
             //input discription
             IWebElement discription = driver.FindElement(By.Id("Description"));
-
-            // Get from feature file
+            //get from feature file
             discription.SendKeys(desc);
 
             //price is overriding so call the first input then call price input
@@ -137,33 +172,31 @@ namespace September2020.pages
             savebutton.Click();
 
             //wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 5000);
-            Thread.Sleep(5000);
-            try
-            {
-                //goto last page
-                IWebElement lastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
-                lastpage.Click();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("last page cannot be loaded", ex.Message);
-            }
-            wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
-            //last test element selection
-            IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            //Thread.Sleep(5000);
+            //try
+            //{
+            //    //goto last page
+            //    IWebElement lastpage = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]"));
+            //    lastpage.Click();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("last page cannot be loaded", ex.Message);
+            //}
+            //wait.WaitForElement(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 400);
+            ////last test element selection
+            //IWebElement expectedcode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            //if (expectedcode.Text == codeName)
+            //{
+            //    //using Aseert pass and fail on if condition
+            //    Assert.Pass("Time page created succesfully");
 
-            if (expectedcode.Text == codeName)
-            {
-                //using Aseert pass and fail on if condition
-                Assert.Pass("Time record created successfully, test passed");
+            //}
+            //else
+            //{
+            //    Assert.Fail("time page created failed");
 
-            }
-            else
-            {
-                Assert.Fail("Time record created faild, test faild");
-
-            }
-
+            //}
         }
 
         public void EditTM(IWebDriver driver)
