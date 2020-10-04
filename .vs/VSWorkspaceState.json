@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Feature file",
+    "\\helpers",
+    "\\pages",
+    "\\Step Definition",
+    "\\test"
   ],
-  "SelectedNode": "\\September2020.sln",
+  "SelectedNode": "\\September2020.csproj.user",
   "PreviewInSolutionExplorer": false
 }

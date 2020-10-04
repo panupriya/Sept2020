@@ -24,13 +24,13 @@ namespace September2020.Step_Definition
         public void LoginToTurnup()
         {
            /*System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)   
-             //web driver
+             web driver
 
-          //  option : NoCookies , Nocache. 
+            option : NoCookies , Nocache. 
 
-            // If you search of a mouse of Amazon. Dell. 30 seconds. 15 seconds. 
+             If you search of a mouse of Amazon. Dell. 30 seconds. 15 seconds. 
 
-            // Chrome that sohuld replicate a fresh env. 
+             Chrome that sohuld replicate a fresh env. 
 
             var option = new ChromeOptions();
             option.AddArgument("--headless");
@@ -78,7 +78,7 @@ namespace September2020.Step_Definition
 
         }
 
-
+        //create new using random data
         [When(@"I create entry using code code: '(.*)' and desc: '(.*)'")]
         public void WhenICreateEntryUsingCodeCodeAndDesc(string code, string desc)
         {
@@ -101,14 +101,16 @@ namespace September2020.Step_Definition
             Assert.IsTrue(result, "NO TM Record created for code : " +  _context.Code);
         }
 
-        // create edit and delete in one scenario
+
+
+        // create, edit and delete in one scenario
         //1.create
         [When(@"I create entry using random code: '(.*)' and desc: '(.*)'")]
         public void WhenICreateEntryUsingRandomCodeAndDesc(string code, string desc)
         {
             var TMPage = new TMpage();
             var randomCode = TMPage.CreateRandomCode();
-            // share it with THEN Step below
+            
             _context.Code = randomCode;
             _context.Desc = randomCode + "desc";
 
@@ -130,7 +132,7 @@ namespace September2020.Step_Definition
         {
             var TMPage = new TMpage();
             var randomCode = TMPage.CreateRandomCode();
-            // share it with THEN Step below
+         
             _context.editCode = randomCode;
             _context.editDesc = randomCode + "desc";
             TMpage.CreateEditWithValues(driver, _context.editCode, _context.editDesc);
