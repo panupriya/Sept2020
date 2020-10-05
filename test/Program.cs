@@ -32,7 +32,8 @@ namespace september2020
         [Test , Description("this test is to check user is able to edit time ")]
             public void EditTMTests()
             {
-                //obj init and define for home page
+                //obj init and define for home page....
+                //obj init and define for home page....
                 HomePage homepageobj = new HomePage();
                 homepageobj.NavigateToTM(driver);
 
