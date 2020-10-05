@@ -22,7 +22,7 @@ namespace September2020.test
 
             // Test 1- check if the user is able to create company successfully
 
-            //obj init and define for createTM
+            //obj init and define for createTM.
             CompanyPage createCompanyObj = new CompanyPage();
             createCompanyObj.CreateCompany(driver);
 
